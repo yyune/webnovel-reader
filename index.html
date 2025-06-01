@@ -31,18 +31,18 @@
                                 <a class="nav-link" href="#">New</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Populer</a>
+                                <a class="nav-link" href="#">novel</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Browse
+                                    Genres
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="#">Romance</a>
+                                    <a class="dropdown-item" href="#">Fantasy</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    <a class="dropdown-item" href="#">Thriller</a>
                                 </div>
                             </li>
                         </ul>
@@ -171,56 +171,6 @@
         crossorigin="anonymous"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
-
-   <script>
-  const latestMangas = [
-    {
-      title: "That Thing in the Royal Court",
-      img: "img/That Thing in the Royal Court.webp",
-      latestVol: "Ch 1",
-      desc: "Join Luffy on his pirate adventure!",
-      folder: "That Thing in the Royal Court"
-    },
-    {
-      title: "Naruto",
-      img: "img/cover2.jpg",
-      latestVol: "VOL. 88",
-      desc: "Ninja missions, battles and bonds.",
-      folder: "Naruto"
-    }
-    // Add more manga as needed
-  ];
-
-  function renderLatestMangas() {
-  const container = document.getElementById('mangaContainer');
-  container.innerHTML = '';
-
-  latestMangas.forEach(manga => {
-    // encode whole path (folder + slash + file)
-    const filePath = encodeURIComponent(`${manga.folder}/chapter1.txt`);
-
-    const html = `
-      <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
-        <div class="card">
-          <a href="read.html?file=${filePath}">
-            <img src="${manga.img}" class="card-img-top" alt="${manga.title}" />
-          </a>
-          <div class="card-body">
-            <h5 class="card-title"><a href="read.html?file=${filePath}">${manga.title}</a></h5>
-            <p class="card-text">${manga.desc}</p>
-            <small>Latest: ${manga.latestVol}</small>
-          </div>
-        </div>
-      </div>
-    `;
-
-    container.insertAdjacentHTML('beforeend', html);
-  });
-}
-
-  document.addEventListener('DOMContentLoaded', renderLatestMangas);
-</script>
-
 
 </body>
 

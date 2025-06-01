@@ -178,7 +178,7 @@
                         <table class="table table-striped">
                             <tbody>
                                 <tr>
-                                    <th><a href="read.html?file=That Thing in the Royal Court Chapter 1.txt">CH. 1: The Beginning</a><th>
+                                    <th><a href="read.html?file=That Thing in the Royal Court/Chapter 1.txt">CH. 1: The Beginning</a><th>
                                 </tr>
                                 <tr>
                                     <th><a href="details.html">CH. 2, Luffy in the garden</a></th>
@@ -313,8 +313,8 @@
     <script src="js/main.js"></script>
     
     <script>
-function loadChapter(filename) {
-    fetch('chapters/' + filename)
+function loadChapter(fileName) {
+    fetch('novel/' + fileName)
     .then(response => {
         if (!response.ok) throw new Error('Chapter not found');
         return response.text();

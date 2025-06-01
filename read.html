@@ -67,41 +67,42 @@
 
   <!-- Scripts -->
   <script>
-    const params = new URLSearchParams(window.location.search);
-const file = params.get("file"); // e.g., "novel_title/chapter1.txt"
+  const params = new URLSearchParams(window.location.search);
+  const file = params.get("file");
 
-const fontSizeBase = 1.1;
-let currentFontSize = fontSizeBase;
-let darkMode = false;
+  const fontSizeBase = 1.1;
+  let currentFontSize = fontSizeBase;
+  let darkMode = false;
 
-function changeFontSize(delta) {
-  currentFontSize += delta * 0.1;
-  document.getElementById('chapter-content').style.fontSize = currentFontSize + 'rem';
-}
+  function changeFontSize(delta) {
+    currentFontSize += delta * 0.1;
+    document.getElementById('chapter-content').style.fontSize = currentFontSize + 'rem';
+  }
 
-function toggleDarkMode() {
-  darkMode = !darkMode;
-  document.body.classList.toggle('bg-dark');
-  document.body.classList.toggle('text-white');
-  document.querySelector('.container').classList.toggle('bg-dark');
-}
+  function toggleDarkMode() {
+    darkMode = !darkMode;
+    document.body.classList.toggle('bg-dark');
+    document.body.classList.toggle('text-white');
+    document.querySelector('.container').classList.toggle('bg-dark');
+  }
 
-function loadChapter(fileName) {
-  if (!fileName) return;
+  function loadChapter(fileName) {
+  if (!fileName) {
+    document.getElementById("chapter-content").textContent = "No chapter file specified.";
+    return;
+  }
 
-  // Extract novel and chapter parts for nicer title display
-  // fileName is like "novel_title/chapter1.txt"
-  const parts = fileName.split('/');
-  const novel = parts.length > 1 ? parts[0] : "";
-  const chapter = parts.length > 1 ? parts[1] : parts[0];
+  // Build the path assuming fileName includes folder + file like: "That Thing in the Royal Court/Chapter 1.txt"
+  // Prefix with novel/ if your folder is inside novel/
+  const chapterPath = `novel/${fileName}`;
 
-  // Format title for display
-  const displayTitle = `${novel.replace(/[_]/g, " ")} - ${chapter.replace(".txt", "").replace(/[-_]/g, " ")}`;
-  document.getElementById("chapter-title").textContent = displayTitle;
+  // Set chapter title (just filename without extension)
+  const chapterTitle = fileName.split('/').pop().replace(".txt", "").replace(/[-_]/g, " ");
+  document.getElementById("chapter-title").textContent = chapterTitle;
 
-  fetch("novels/" + fileName)
+  fetch(chapterPath)
     .then(res => {
-      if (!res.ok) throw new Error("Failed to load chapter.");
+      if (!res.ok) throw new Error(`Failed to load chapter at ${chapterPath}`);
       return res.text();
     })
     .then(data => {
@@ -109,19 +110,14 @@ function loadChapter(fileName) {
     })
     .catch(err => {
       document.getElementById("chapter-content").textContent = err.message;
+      console.error(err);
     });
 }
 
-loadChapter(file);
 
-// TODO: Replace this logic with your actual prev/next file paths
-// Example: If you keep track of chapters in an array, you can compute prev/next here
-const prevFile = "novel_title/chapter0.txt"; 
-const nextFile = "novel_title/chapter2.txt";
+  loadChapter(file);
+</script>
 
-document.getElementById('prev-btn').href = `read.html?file=${encodeURIComponent(prevFile)}`;
-document.getElementById('next-btn').href = `read.html?file=${encodeURIComponent(nextFile)}`;
-  </script>
 </body>
 </html>
 

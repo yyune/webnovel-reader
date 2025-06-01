@@ -1,18 +1,10 @@
 [
-    {
-      "title": "That Thing in the Royal Court",
-      "img": "img/That Thing in the Royal Court.webp",
-      "latestVol": "Ch ?",
-      "desc": "I object to that false accusation!!",
-      "folder": "That Thing in the Royal Court"
-    },
-    {
-      "title": "Naruto",
-      "img": "img/cover2.jpg",
-      "latestVol": "VOL. 88",
-      "desc": "Ninja missions, battles and bonds.",
-      "folder": "Naruto"
-    }
-  ]
-
-  
+  {
+    "title": "That Thing in the Royal Court",
+    "img": "img/That Thing in the Royal Court.webp",
+    "latestVol": "Ch 1",
+    "desc": "I object to this accusation!!",
+    "folder": "That Thing in the Royal Court",
+    "chapterFile": "Chapter 1.txt"
+  }
+]
