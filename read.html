@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>Chapter Reader</title>
+
+  <!-- Bootstrap & Custom CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/all.css">
+  <link rel="stylesheet" href="css/main.css">
+
+  <style>
+  #chapter-content {
+    white-space: pre-wrap;
+    font-size: 1.1rem;
+    color: #333;
+  }
+  #chapter-title {
+    color: #222222;
+    font-size: 1.8rem;
+    font-weight: 600;
+  }
+  .reader-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+  }
+  .reader-controls button {
+    min-width: 40px;
+  }
+</style>
+
+</head>
+
+<body>
+  <!-- Navbar (reuse if you want same as index.html) -->
+  <nav class="navbar navbar-expand-lg navbar-light shadow py-2">
+    <a class="navbar-brand" href="index.html">
+      <h5>Manga Man</h5>
+    </a>
+  </nav>
+
+  <div class="container my-5 bg-white p-4 shadow rounded">
+    <h1 id="chapter-title" class="text-center mb-4">Loading...</h1>
+
+    <!-- Reader controls -->
+    <div class="reader-controls">
+      <a href="#" id="prev-btn" class="btn btn-outline-secondary"><i class="fas fa-arrow-left"></i> Previous</a>
+
+      <div>
+        <button class="btn btn-sm btn-outline-dark" onclick="changeFontSize(-1)">A-</button>
+        <button class="btn btn-sm btn-outline-dark" onclick="changeFontSize(1)">A+</button>
+        <button class="btn btn-sm btn-outline-dark" onclick="toggleDarkMode()">Dark Mode</button>
+      </div>
+
+      <a href="#" id="next-btn" class="btn btn-outline-secondary">Next <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+    <div id="chapter-content">Loading chapter...</div>
+
+    <div class="text-center mt-5">
+      <a href="index.html" class="btn btn-link">&larr; Back to Library</a>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const file = params.get("file");
+
+    const fontSizeBase = 1.1;
+    let currentFontSize = fontSizeBase;
+    let darkMode = false;
+
+    function changeFontSize(delta) {
+      currentFontSize += delta * 0.1;
+      document.getElementById('chapter-content').style.fontSize = currentFontSize + 'rem';
+    }
+
+    function toggleDarkMode() {
+      darkMode = !darkMode;
+      document.body.classList.toggle('bg-dark');
+      document.body.classList.toggle('text-white');
+      document.querySelector('.container').classList.toggle('bg-dark');
+    }
+
+    function loadChapter(fileName) {
+      if (!fileName) return;
+      document.getElementById("chapter-title").textContent = fileName.replace(".txt", "").replace(/[-_]/g, " ");
+      fetch("chapters/" + fileName)
+        .then(res => {
+          if (!res.ok) throw new Error("Failed to load chapter.");
+          return res.text();
+        })
+        .then(data => {
+          document.getElementById("chapter-content").textContent = data;
+        })
+        .catch(err => {
+          document.getElementById("chapter-content").textContent = err.message;
+        });
+        
+    }
+
+    loadChapter(file);
+
+    // Placeholder for next/prev buttons
+    document.getElementById('prev-btn').href = `read.html?file=chapter0.txt`; // Replace with logic
+    document.getElementById('next-btn').href = `read.html?file=chapter2.txt`; // Replace with logic
+  </script>
+</body>
+</html>
+

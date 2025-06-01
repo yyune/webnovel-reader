@@ -119,7 +119,7 @@
                     <img class="shadow" src="img/cover1.jpg" alt="">
                 </div>
                 <div class="info col">
-                    <h2 class="head">One piece</h2>
+                    <h2 class="head">That Thing in the Royal Court</h2>
                     <table class="table table-borderless">
                         <tbody>
                             <tr>
@@ -178,8 +178,7 @@
                         <table class="table table-striped">
                             <tbody>
                                 <tr>
-                                    <th><a href="details.html">CH. 1, Luffy in the island</a></th>
-                                    <td class="text-muted text-uppercase float-right">8 hours ago</td>
+                                    <th><a href="read.html?file=That Thing in the Royal Court Chapter 1.txt">CH. 1: The Beginning</a><th>
                                 </tr>
                                 <tr>
                                     <th><a href="details.html">CH. 2, Luffy in the garden</a></th>
@@ -217,6 +216,8 @@
                     </div>
                 </div>
                 <!-- end vol -->
+
+                
 
                 <!-- start related -->
                 <div id="related" class="tab-pane fade">
@@ -310,6 +311,25 @@
         crossorigin="anonymous"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
+    
+    <script>
+function loadChapter(filename) {
+    fetch('chapters/' + filename)
+    .then(response => {
+        if (!response.ok) throw new Error('Chapter not found');
+        return response.text();
+    })
+    .then(text => {
+        document.getElementById('chapter-content').textContent = text;
+    })
+    .catch(err => {
+        document.getElementById('chapter-content').textContent = 'Failed to load chapter: ' + err.message;
+    });
+}
+</script>
+</body>
+</html>
+
 </body>
 
 </html>
