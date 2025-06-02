@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Novel Details</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #070707;
+      color: #faf9f9;
+      padding: 2rem;
+    }
+    .novel-container {
+      max-width: 700px;
+      margin: auto;
+      background-color: #181818;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255,255,255,0.1);
+    }
+    img {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    h1 {
+      font-size: 2rem;
+      color: #faf9f9;
+    }
+    p {
+      color: #dcdcdc;
+    }
+    small {
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="novel-container">
+    <h1 id="novel-title">Loading...</h1>
+    <img id="novel-image" src="" alt="Novel Cover">
+    <p id="novel-desc"></p>
+    <small id="novel-latest"></small>
+  </div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const novelId = urlParams.get('id');
+
+    fetch('manga.json')
+      .then(res => res.json())
+      .then(data => {
+        const novel = data.find(n => n.id === novelId);
+
+        if (novel) {
+          document.getElementById('novel-title').textContent = novel.title || "No title";
+          document.getElementById('novel-desc').textContent = novel.desc || "No description";
+          document.getElementById('novel-image').src = novel.img || "default.jpg";
+          document.getElementById('novel-latest').textContent = "Latest: " + (novel.latestVol || "N/A");
+        } else {
+          document.getElementById('novel-title').textContent = "Novel not found";
+          document.getElementById('novel-desc').textContent = "";
+          document.getElementById('novel-image').style.display = "none";
+          document.getElementById('novel-latest').style.display = "none";
+        }
+      })
+      .catch(err => {
+        console.error("Failed to load manga.json", err);
+        document.getElementById('novel-title').textContent = "Error loading novel";
+      });
+  </script>
+
+</body>
+</html>

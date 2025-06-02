@@ -41,3 +41,54 @@ fetch('data/manga.json')
   })
   .catch(err => console.error('Failed to load manga data:', err));
     });
+fetch('manga-data.json')
+  .then(response => response.json())
+  .then(data => {
+    const container = document.getElementById('mangaContainer');
+    data.forEach(manga => {
+      const card = document.createElement('div');
+      card.className = 'col mb-3';  // let Bootstrap grid handle column sizing
+      card.innerHTML = `
+        <div class="card h-100">
+          <img src="${manga.image}" class="card-img-top" alt="${manga.title}">
+          <div class="card-body">
+            <h5 class="card-title">${manga.title}</h5>
+            <p class="card-text">${manga.description}</p>
+          </div>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+  })
+  .catch(err => console.error('Failed to load manga data:', err));
+
+  function loadManga() {
+  fetch('manga-data.json')
+    .then(response => response.json())
+    .then(data => {
+      const container = document.getElementById('mangaContainer');
+      container.innerHTML = '';  // Clear old cards
+      data.forEach(manga => {
+        const card = document.createElement('div');
+        card.className = 'col mb-3';
+        card.innerHTML = `
+          <div class="card h-100">
+            <img src="${manga.image}" class="card-img-top" alt="${manga.title}">
+            <div class="card-body">
+              <h5 class="card-title">${manga.title}</h5>
+              <p class="card-text">${manga.description}</p>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    })
+    .catch(err => console.error('Failed to load manga data:', err));
+}
+
+// Initial load
+loadManga();
+
+// Refresh every 60 seconds (60000 ms)
+setInterval(loadManga, 60000);
+fetch(`manga-data.json?t=${new Date().getTime()}`)

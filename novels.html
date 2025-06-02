@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novels - Manga Man</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/all.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <style>
+        body {
+            color: #212529; /* Bootstrap's default dark text */
+        }
+
+        .novel-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            width: 160px;
+            margin: 10px auto;
+        }
+
+        .novel-card:hover {
+            transform: scale(1.05);
+        }
+
+        .novel-card img {
+            height: 200px;
+            object-fit: cover;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            width: 100%;
+        }
+
+        .novel-card-body {
+            padding: 10px;
+            font-size: 14px;
+        }
+
+        .novel-card-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #070707;
+        }
+
+        .novel-card-text {
+            font-size: 12px;
+            color: #4e544e;
+        }
+
+        .btn-read {
+            background-color: #ab201c;
+            color: #faf9f9;
+            border: none;
+            padding: 5px 10px;
+            font-size: 12px;
+            border-radius: 5px;
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .btn-read:hover {
+            background-color: #a92d1c;
+            color: #fff;
+        }
+
+        .novel-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        h2 {
+            color: #070707;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light shadow py-2 py-sm-0">
+        <a class="navbar-brand" href="index.html"><h5>Manga Man</h5></a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">New</a></li>
+                <li class="nav-item active"><a class="nav-link" href="novels.html">Novels</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Genres</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Romance</a>
+                        <a class="dropdown-item" href="#">Fantasy</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Thriller</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-5">
+        <h2 class="mb-4 text-center">Browse Novels</h2>
+        <div id="novelContainer" class="novel-grid"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-5">
+        <div class="container py-4">
+            <span class="copyright">&copy; 2025 Manga Man</span>
+            <span class="design float-right">Designed by ZFCon</span>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    
+
+    <!-- Dynamic Novel Loader -->
+    <script>
+        const novels = [
+            {
+                title: "That Thing in the Royal Court",
+                summary: "I object to the false accusations!!",
+                image: "img/That Thing in the Royal Court.jpg",
+                link: "novel.html?id=TRCC"
+            },
+            {
+                title: "Surviving as the Weakest Maid in the World",
+                summary: "No, this must be an obvious error. Is this game really okay as it is?",
+                image: "img/Surviving as the Weakest Maid in the World.jpg",
+                link: "novel.html?id=weakest maid"
+            },
+            {
+                title: "Chimera",
+                summary: "Was money your goal from the beginning? I was wondering why you slept with me.",
+                image: "img/Chimera.webp",
+                link: "novel.html?id=Chimera"
+            }
+        ];
+
+        const container = document.getElementById("novelContainer");
+
+        novels.forEach(novel => {
+            const card = document.createElement("div");
+            card.className = "novel-card";
+
+            card.innerHTML = `
+                <img src="${novel.image}" alt="${novel.title}">
+                <div class="novel-card-body">
+                    <div class="novel-card-title">${novel.title}</div>
+                    <div class="novel-card-text">${novel.summary}</div>
+                    <a href="novel.html?id=${novel.id}" class="btn-read">Details</a>
+                </div>
+            `;
+
+            container.appendChild(card);
+        });
+    </script>
+    
+</body>
+</html>

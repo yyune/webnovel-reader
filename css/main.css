@@ -117,6 +117,21 @@ table tbody tr td {
     border-radius: 50%;
 }
 
+/* Shrink slider height */
+#mangaslider .carousel-item img {
+    height: 500px; /* You can adjust this */
+    object-fit: cover;
+    width: 100%;
+}
+
+#mangaslider .carousel-item {
+    max-height: 500px; /* Match image height */
+    overflow: hidden;
+}
+
+
+
+
 /* end slider */
 
 /* start lastest */
@@ -397,6 +412,21 @@ footer {
     color: #999;
     margin-top: 4px;
 }
+
+.card {
+  max-width: 250px;
+  margin: 0 auto;
+}
+
+.card-body {
+  padding: 1rem;
+}
+.card:hover {
+  transform: scale(1.02);
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+}
+
 
 /* === End Standardized Card Styling === */
 

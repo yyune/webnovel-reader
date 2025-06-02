@@ -1,10 +1,29 @@
 [
   {
+    "id": "TTRC",
     "title": "That Thing in the Royal Court",
     "img": "img/That Thing in the Royal Court.jpg",
     "latestVol": "Ch 1",
     "desc": "I object to this accusation!!",
     "folder": "That Thing in the Royal Court",
+    "chapterFile": "Chapter 1.txt"
+  },
+  {
+    "id": "weakest maid",
+    "title": "Surviving as the Weakest Maid in the World",
+    "img": "img/Surviving as the Weakest Maid in the World.jpg",
+    "latestVol": "Ch 10",
+    "desc": "No, this must be an obvious error. Is this game really okay as it is?",
+    "folder": "Surviving as the Weakest Maid in the World",
+    "chapterFile": "Chapter 1.txt"
+  },
+  {
+    "id": "chimeria",
+    "title": "Chimera",
+    "img": "img/Chimera.webp",
+    "latestVol": "Ch 1",
+    "desc": "Was money your goal from the beginning? I was wondering why you slept with me.",
+    "folder": "Chimera",
     "chapterFile": "Chapter 1.txt"
   }
 ]
