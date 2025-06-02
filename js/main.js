@@ -11,7 +11,7 @@ $('.navbar-light .navbar-toggler').click(() => {
 /* end navbar */
 
 document.addEventListener('DOMContentLoaded', () => {
-fetch('data/manga.json')
+fetch('manga.json')
   .then(res => res.json())
   .then(data => {
     const container = document.getElementById("mangaContainer");
